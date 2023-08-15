@@ -46,7 +46,7 @@ func ExampleOption_OrElse() {
 	// output: meow
 }
 
-func ExampleGetOrElse() {
+func ExampleOption_GetOrElse() {
 	opt := option.New("the quick black cat")
 	startsWith := func(prefix string) func(string) bool {
 		return func(s string) bool {
