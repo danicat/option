@@ -2,6 +2,7 @@ package option_test
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/danicat/option"
@@ -23,15 +24,15 @@ func ExampleOption_Filter() {
 }
 
 func ExampleMap() {
-	opt := option.New("the quick black cat jumped over the lazy dog")
+	opt := option.New(1234)
 	startsWith := func(prefix string) func(string) bool {
 		return func(s string) bool {
 			return strings.HasPrefix(s, prefix)
 		}
 	}
 	print := func(s string) { fmt.Println(s) }
-	option.Map(opt, strings.ToUpper).Filter(startsWith("T")).ForEach(print)
-	// output: THE QUICK BLACK CAT JUMPED OVER THE LAZY DOG
+	option.Map(opt, strconv.Itoa).Map(strings.TrimSpace).Filter(startsWith("1")).ForEach(print)
+	// output: 1234
 }
 
 func ExampleOption_OrElse() {
