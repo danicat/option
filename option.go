@@ -24,6 +24,11 @@ func (o Option[T]) Get() T {
 	return o.value
 }
 
+// GetOrElse returns the option value or a default value if option is not defined
+func (o Option[T]) GetOrElse(v T) T {
+	return o.OrElse(v).Get()
+}
+
 // Filter applies function f and returns some if the condition is true, none otherwise
 func (o Option[T]) Filter(f func(T) bool) Option[T] {
 	if o.defined && f(o.value) {
@@ -47,7 +52,7 @@ func (o Option[T]) Map(f func(T) T) Option[T] {
 	return Option[T]{}
 }
 
-// OrElse returns a default value if option is None (special case)
+// OrElse, if option is not defined, returns a default value wrapped in an option. Otherwise returns self.
 func (o Option[T]) OrElse(v T) Option[T] {
 	if o.defined {
 		return o

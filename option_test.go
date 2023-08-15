@@ -45,3 +45,16 @@ func ExampleOption_OrElse() {
 	option.Map(opt, strings.ToUpper).Filter(startsWith("S")).OrElse("meow").ForEach(print)
 	// output: meow
 }
+
+func ExampleGetOrElse() {
+	opt := option.New("the quick black cat")
+	startsWith := func(prefix string) func(string) bool {
+		return func(s string) bool {
+			return strings.HasPrefix(s, prefix)
+		}
+	}
+
+	res := opt.Map(strings.ToUpper).Filter(startsWith("s")).GetOrElse("jumped over the lazy dog")
+	fmt.Println(res)
+	// output: jumped over the lazy dog
+}
