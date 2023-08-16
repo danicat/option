@@ -1,5 +1,7 @@
 package option
 
+import "fmt"
+
 // Option defines an option type that can be defined (Some[T]) or undefined (None)
 type Option[T any] struct {
 	value   T
@@ -58,6 +60,15 @@ func (o Option[T]) OrElse(v T) Option[T] {
 		return o
 	}
 	return New(v)
+}
+
+// Returns a string describing the Option using the Some[T] and None notation
+func (o Option[T]) String() string {
+	if o.defined {
+		return fmt.Sprintf("Some[%T]=%v", o.value, o.value)
+	}
+
+	return fmt.Sprintf("None[%T]", o.value)
 }
 
 // General functions Option[T] -> Option[U]
