@@ -1,5 +1,7 @@
-## Struct implementation
+# Package Option
 
-This branch implements an Option[T] type using the struct approach.
+This package implements an Option type in Go using generics. This package is provided as a proof of concept only so use it at your own risk.
 
-Special cases for Map and OrElse from T -> T are defined as part of the Option[T] method set. For transformations from T -> U helper functions are provided taking the first argument as Option[T].
+## Gophercon UK 2023 talk
+
+This code is companion to the Gophercon UK 2023 talk "Fun with Generics".
